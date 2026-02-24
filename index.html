@@ -462,347 +462,403 @@
         padding: 36px;
       }
     }
+
     /* --- Corrige o botão hambúrguer (remove fundo/borda brancos) --- */
-  .nav-toggle{
-    display: none;              /* só aparece no mobile (já controlado pelo @media) */
-    background: transparent;    /* remove fundo branco */
-    border: none;               /* remove borda */
-    color: #ffffff;             /* cor do ícone */
-    padding: 0;                 /* tira padding do botão */
-    line-height: 1;
-    cursor: pointer;
-    -webkit-appearance: none;
-    appearance: none;
-  }
+    .nav-toggle {
+      display: none;
+      /* só aparece no mobile (já controlado pelo @media) */
+      background: transparent;
+      /* remove fundo branco */
+      border: none;
+      /* remove borda */
+      color: #ffffff;
+      /* cor do ícone */
+      padding: 0;
+      /* tira padding do botão */
+      line-height: 1;
+      cursor: pointer;
+      -webkit-appearance: none;
+      appearance: none;
+    }
 
-  /* Deixa o ícone um pouco maior e alinhado */
-  .nav-toggle .bi{
-    font-size: 28px;            /* você já usava inline; aqui fica centralizado no CSS */
-    vertical-align: middle;
-  }
+    /* Deixa o ícone um pouco maior e alinhado */
+    .nav-toggle .bi {
+      font-size: 28px;
+      /* você já usava inline; aqui fica centralizado no CSS */
+      vertical-align: middle;
+    }
 
-  /* --- Remove bolinhas da lista e alinha itens no desktop --- */
-  .menu{
-    list-style: none;           /* remove bullets */
-    display: flex;
-    align-items: center;
-    gap: 0;                     /* os espaçamentos já vêm do nav a { margin-left: 30px; } */
-    margin: 0;
-    padding: 0;
-  }
-  /* --- Deixa o botão "Soluções" com cara de link, sem fundo/borda --- */
-.dropdown-toggle{
-  background: transparent;       /* remove fundo branco */
-  border: none;                  /* remove borda padrão */
-  color: #ffffff;                /* mesma cor dos links */
-  font: inherit;                 /* herda a fonte do nav */
-  padding: 0;                    /* tira padding padrão do botão */
-  margin-left: 30px;             /* mesmo espaçamento dos outros links (nav a) */
-  cursor: pointer;
-  display: inline-flex;          /* alinha texto + ícone */
-  align-items: center;
-  gap: 6px;                      /* espaço entre texto e caret */
-  line-height: 1;
-  -webkit-appearance: none;      /* remove estilo nativo (Safari/Chrome) */
-  appearance: none;
-  position: relative;            /* para o sublinhado (pseudo-elemento) */
-}
+    /* --- Remove bolinhas da lista e alinha itens no desktop --- */
+    .menu {
+      list-style: none;
+      /* remove bullets */
+      display: flex;
+      align-items: center;
+      gap: 0;
+      /* os espaçamentos já vêm do nav a { margin-left: 30px; } */
+      margin: 0;
+      padding: 0;
+    }
 
-/* Sublinhado animado no hover (igual ao nav a::after) */
-.dropdown-toggle::after{
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -5px;
-  width: 0;
-  height: 2px;
-  background: #22d3ee;
-  transition: .3s;
-}
-.dropdown-toggle:hover::after{
-  width: 100%;
-}
+    /* --- Deixa o botão "Soluções" com cara de link, sem fundo/borda --- */
+    .dropdown-toggle {
+      background: transparent;
+      /* remove fundo branco */
+      border: none;
+      /* remove borda padrão */
+      color: #ffffff;
+      /* mesma cor dos links */
+      font: inherit;
+      /* herda a fonte do nav */
+      padding: 0;
+      /* tira padding padrão do botão */
+      margin-left: 30px;
+      /* mesmo espaçamento dos outros links (nav a) */
+      cursor: pointer;
+      display: inline-flex;
+      /* alinha texto + ícone */
+      align-items: center;
+      gap: 6px;
+      /* espaço entre texto e caret */
+      line-height: 1;
+      -webkit-appearance: none;
+      /* remove estilo nativo (Safari/Chrome) */
+      appearance: none;
+      position: relative;
+      /* para o sublinhado (pseudo-elemento) */
+    }
 
-/* Estado de foco acessível, mas sem contorno feio */
-.dropdown-toggle:focus{
-  outline: none;
-  box-shadow: none;
-}
+    /* Sublinhado animado no hover (igual ao nav a::after) */
+    .dropdown-toggle::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 2px;
+      background: #22d3ee;
+      transition: .3s;
+    }
 
-/* Deixa o caret alinhado e com opacidade suave */
-.dropdown-toggle .bi{
-  font-size: 14px;
-  opacity: .85;
-}
-/* =========================
+    .dropdown-toggle:hover::after {
+      width: 100%;
+    }
+
+    /* Estado de foco acessível, mas sem contorno feio */
+    .dropdown-toggle:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    /* Deixa o caret alinhado e com opacidade suave */
+    .dropdown-toggle .bi {
+      font-size: 14px;
+      opacity: .85;
+    }
+
+    /* =========================
    BASE: links e lista
    ========================= */
-.menu{
-  list-style: none;            /* remove bolinhas */
-  display: flex;
-  align-items: center;
-  gap: 0;
-  margin: 0;
-  padding: 0;
-}
+    .menu {
+      list-style: none;
+      /* remove bolinhas */
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+    }
 
-.menu a{
-  text-decoration: none;
-  color: #fff;
-  font-weight: 500;
-  position: relative;
-}
+    .menu a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      position: relative;
+    }
 
-/* sublinhado animado apenas nos links de topo (não no submenu) */
-.menu > .menu-item > a::after,
-.dropdown-toggle::after{
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -5px;
-  width: 0;
-  height: 2px;
-  background: #22d3ee;
-  transition: width .25s ease;
-}
-.menu > .menu-item > a:hover::after,
-.dropdown-toggle:hover::after{
-  width: 100%;
-}
+    /* sublinhado animado apenas nos links de topo (não no submenu) */
+    .menu>.menu-item>a::after,
+    .dropdown-toggle::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 2px;
+      background: #22d3ee;
+      transition: width .25s ease;
+    }
 
-/* =========================
+    .menu>.menu-item>a:hover::after,
+    .dropdown-toggle:hover::after {
+      width: 100%;
+    }
+
+    /* =========================
    "Soluções" como link, não botão feio
    ========================= */
-.dropdown-toggle{
-  background: transparent;
-  border: none;
-  color: #fff;
-  font: inherit;
-  padding: 0;
-  margin-left: 30px;           /* igual ao nav a */
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  line-height: 1;
-  -webkit-appearance: none;
-  appearance: none;
-  position: relative;
-}
-.dropdown-toggle:focus{
-  outline: none;
-  box-shadow: none;
-}
-.dropdown-toggle .bi{
-  font-size: 12px;
-  opacity: .85;
-  transition: transform .2s ease, opacity .2s ease;
-}
+    .dropdown-toggle {
+      background: transparent;
+      border: none;
+      color: #fff;
+      font: inherit;
+      padding: 0;
+      margin-left: 30px;
+      /* igual ao nav a */
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      line-height: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      position: relative;
+    }
 
-/* caret gira quando aberto */
-.dropdown.open .dropdown-toggle .bi{
-  transform: rotate(180deg);
-  opacity: 1;
-}
+    .dropdown-toggle:focus {
+      outline: none;
+      box-shadow: none;
+    }
 
-/* =========================
+    .dropdown-toggle .bi {
+      font-size: 12px;
+      opacity: .85;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+
+    /* caret gira quando aberto */
+    .dropdown.open .dropdown-toggle .bi {
+      transform: rotate(180deg);
+      opacity: 1;
+    }
+
+    /* =========================
    SUBMENU: visual desktop (flutuante)
    ========================= */
-@media (min-width: 901px){
-  .menu-item.dropdown{
-    position: relative;
-  }
+    @media (min-width: 901px) {
+      .menu-item.dropdown {
+        position: relative;
+      }
 
-  /* painel do submenu */
-  .submenu{
-    position: absolute;
-    top: calc(100% + 12px);
-    left: 30px;                   /* alinha com o texto “Soluções” que tem margin-left:30px */
-    min-width: 260px;
-    background: #0b2540;
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 12px;
-    padding: 10px;
-    box-shadow: 0 18px 40px rgba(0,0,0,.35);
-    display: none;                /* escondido por padrão */
-    transform: translateY(8px);
-    opacity: 0;
-    transition: transform .18s ease, opacity .18s ease;
-    z-index: 1001;
-  }
+      /* painel do submenu */
+      .submenu {
+        position: absolute;
+        top: calc(100% + 12px);
+        left: 30px;
+        /* alinha com o texto “Soluções” que tem margin-left:30px */
+        min-width: 260px;
+        background: #0b2540;
+        border: 1px solid rgba(255, 255, 255, .08);
+        border-radius: 12px;
+        padding: 10px;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, .35);
+        display: none;
+        /* escondido por padrão */
+        transform: translateY(8px);
+        opacity: 0;
+        transition: transform .18s ease, opacity .18s ease;
+        z-index: 1001;
+      }
 
-  /* quando aberto via JS (li.dropdown.open) */
-  .dropdown.open > .submenu{
-    display: block;
-    transform: translateY(0);
-    opacity: 1;
-  }
+      /* quando aberto via JS (li.dropdown.open) */
+      .dropdown.open>.submenu {
+        display: block;
+        transform: translateY(0);
+        opacity: 1;
+      }
 
-  /* itens do submenu */
-  .submenu li{
-    list-style: none;
-  }
-  .submenu li + li{
-    margin-top: 6px;
-  }
-  .submenu a{
-    display: block;
-    color: #e6f4ff;
-    padding: 10px 12px;
-    border-radius: 8px;
-    line-height: 1.2;
-    font-weight: 500;
-  }
-  /* sem sublinhado animado no submenu */
-  .submenu a::after{ display: none; }
+      /* itens do submenu */
+      .submenu li {
+        list-style: none;
+      }
 
-  .submenu a:hover{
-    background: rgba(34,211,238,.12);
-    color: #22d3ee;
-  }
-}
+      .submenu li+li {
+        margin-top: 6px;
+      }
 
-/* =========================
+      .submenu a {
+        display: block;
+        color: #e6f4ff;
+        padding: 10px 12px;
+        border-radius: 8px;
+        line-height: 1.2;
+        font-weight: 500;
+      }
+
+      /* sem sublinhado animado no submenu */
+      .submenu a::after {
+        display: none;
+      }
+
+      .submenu a:hover {
+        background: rgba(34, 211, 238, .12);
+        color: #22d3ee;
+      }
+    }
+
+    /* =========================
    MOBILE: off-canvas já é o seu padrão
    – só cuidar da disposição
    ========================= */
-@media (max-width: 900px){
-  .nav-toggle{ display: inline-flex; }
+    @media (max-width: 900px) {
+      .nav-toggle {
+        display: inline-flex;
+      }
 
-  .menu{
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 22px;
-  }
+      .menu {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 22px;
+      }
 
-  .dropdown-toggle{
-    margin-left: 0;             /* sem deslocar no mobile */
-    font-size: 18px;
-  }
+      .dropdown-toggle {
+        margin-left: 0;
+        /* sem deslocar no mobile */
+        font-size: 18px;
+      }
 
-  /* submenu em coluna, sem painel flutuante no mobile */
-  .submenu{
-    position: static;
-    background: transparent;
-    border: 0;
-    box-shadow: none;
-    padding: 6px 0 0 8px;
-    transform: none;
-    opacity: 1;
-  }
-  .submenu a{
-    padding: 8px 0;
-    border-radius: 6px;
-  }
-}
-/* ===== MOBILE: aparência do painel lateral ===== */
-@media (max-width: 900px){
+      /* submenu em coluna, sem painel flutuante no mobile */
+      .submenu {
+        position: static;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        padding: 6px 0 0 8px;
+        transform: none;
+        opacity: 1;
+      }
 
-  /* Painel: um pouco mais “card”, com respiro à direita */
-  nav{
-    padding-right: 20px;
-  }
-
-  /* Títulos/seções do menu */
-  .menu{
-    list-style: none;       /* sem bolinhas */
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-  }
-
-  /* “Soluções” como heading/link */
-  .dropdown-toggle{
-    margin-left: 0;
-    font-size: 18px;
-    font-weight: 700;       /* dá “peso” de título */
-    color: #fff;
-    background: transparent;
-    border: 0;
-    padding: 2px 0;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  /* caret */
-  .dropdown-toggle .bi{
-    font-size: 12px;
-    opacity: .9;
-    transition: transform .2s ease;
-  }
-  .dropdown.open .dropdown-toggle .bi{
-    transform: rotate(180deg);
-  }
-
-  /* Submenu organizado e sem bullets */
-  .submenu{
-    list-style: none;         /* remove bolinhas do UL */
-    padding-left: 12px;       /* leve indentação */
-    margin-top: 6px;
-  }
-  .submenu li{
-    list-style: none;         /* remove qualquer bullet residual */
-  }
-  .submenu a{
-    display: block;
-    color: #e6f4ff;
-    text-decoration: none;
-    font-size: 16px;
-    padding: 10px 0;          /* área de toque confortável */
-    border-radius: 8px;
-  }
-  .submenu a:hover{
-    background: rgba(34,211,238,.12);
-    color: #22d3ee;
-  }
-
-  /* Links de nível superior (Sobre Nós, Cases, Contato) */
-  .menu > .menu-item > a{
-    display: block;
-    font-size: 18px;
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 0;
-    border-radius: 8px;
-  }
-  .menu > .menu-item > a:hover{
-    background: rgba(255,255,255,.06);
-  }
-
-  /* Separador sutil entre o bloco “Soluções” e os demais */
-  .menu > .menu-item.dropdown{
-    padding-bottom: 8px;
-    border-bottom: 1px solid rgba(255,255,255,.08);
-    margin-bottom: 6px;
-  }
-
-  /* Remove sublinhado animado no mobile (fica “limpo”) */
-  .dropdown-toggle::after,
-  .menu > .menu-item > a::after{
-    display: none !important;
-  }
-}
-/* Mobile: sem margem lateral (os links empilham), mantém visual limpo */
-@media (max-width: 900px){
-  .dropdown-toggle{
-    margin-left: 0;
-    font-size: 18px;
-  }
-}
-
-
-  /* --- Mobile: mostra o botão e empilha os links --- */
-  @media (max-width: 900px){
-    .nav-toggle{ display: inline-flex; }  /* mostra o botão hambúrguer */
-    .menu{
-      flex-direction: column;   /* os links um abaixo do outro no off-canvas */
-      align-items: flex-start;
-      gap: 28px;
+      .submenu a {
+        padding: 8px 0;
+        border-radius: 6px;
+      }
     }
-  }
+
+    /* ===== MOBILE: aparência do painel lateral ===== */
+    @media (max-width: 900px) {
+
+      /* Painel: um pouco mais “card”, com respiro à direita */
+      nav {
+        padding-right: 20px;
+      }
+
+      /* Títulos/seções do menu */
+      .menu {
+        list-style: none;
+        /* sem bolinhas */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      /* “Soluções” como heading/link */
+      .dropdown-toggle {
+        margin-left: 0;
+        font-size: 18px;
+        font-weight: 700;
+        /* dá “peso” de título */
+        color: #fff;
+        background: transparent;
+        border: 0;
+        padding: 2px 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      /* caret */
+      .dropdown-toggle .bi {
+        font-size: 12px;
+        opacity: .9;
+        transition: transform .2s ease;
+      }
+
+      .dropdown.open .dropdown-toggle .bi {
+        transform: rotate(180deg);
+      }
+
+      /* Submenu organizado e sem bullets */
+      .submenu {
+        list-style: none;
+        /* remove bolinhas do UL */
+        padding-left: 12px;
+        /* leve indentação */
+        margin-top: 6px;
+      }
+
+      .submenu li {
+        list-style: none;
+        /* remove qualquer bullet residual */
+      }
+
+      .submenu a {
+        display: block;
+        color: #e6f4ff;
+        text-decoration: none;
+        font-size: 16px;
+        padding: 10px 0;
+        /* área de toque confortável */
+        border-radius: 8px;
+      }
+
+      .submenu a:hover {
+        background: rgba(34, 211, 238, .12);
+        color: #22d3ee;
+      }
+
+      /* Links de nível superior (Sobre Nós, Cases, Contato) */
+      .menu>.menu-item>a {
+        display: block;
+        font-size: 18px;
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 0;
+        border-radius: 8px;
+      }
+
+      .menu>.menu-item>a:hover {
+        background: rgba(255, 255, 255, .06);
+      }
+
+      /* Separador sutil entre o bloco “Soluções” e os demais */
+      .menu>.menu-item.dropdown {
+        padding-bottom: 8px;
+        border-bottom: 1px solid rgba(255, 255, 255, .08);
+        margin-bottom: 6px;
+      }
+
+      /* Remove sublinhado animado no mobile (fica “limpo”) */
+      .dropdown-toggle::after,
+      .menu>.menu-item>a::after {
+        display: none !important;
+      }
+    }
+
+    /* Mobile: sem margem lateral (os links empilham), mantém visual limpo */
+    @media (max-width: 900px) {
+      .dropdown-toggle {
+        margin-left: 0;
+        font-size: 18px;
+      }
+    }
+
+
+    /* --- Mobile: mostra o botão e empilha os links --- */
+    @media (max-width: 900px) {
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      /* mostra o botão hambúrguer */
+      .menu {
+        flex-direction: column;
+        /* os links um abaixo do outro no off-canvas */
+        align-items: flex-start;
+        gap: 28px;
+      }
+    }
   </style>
 </head>
 
@@ -1044,12 +1100,13 @@
       <h2>Solicitar Orçamento</h2>
       <p>Entre em contato e descubra como podemos transformar sua empresa com automação, dados e estratégia.</p>
 
-      <form class="orcamento-form">
-        <input type="text" name="nome" placeholder="Nome Completo" required>
-        <input type="email" name="email" placeholder="Email Corporativo" required>
-        <input type="text" name="telefone" placeholder="Telefone / WhatsApp" required>
-        <textarea rows="5" name="descricao" placeholder="Descreva seu projeto"></textarea>
+      <form id="orcamento-form" class="orcamento-form">
+        <input type="text" id="nome" name="nome" placeholder="Nome Completo" required>
+        <input type="email" id="email" name="email" placeholder="Email Corporativo" required>
+        <input type="text" id="telefone" name="telefone" placeholder="Telefone / WhatsApp" required>
+        <textarea id="descricao" name="descricao" rows="5" placeholder="Descreva seu projeto"></textarea>
         <button type="submit" class="btn">Enviar Solicitação</button>
+        <div id="status" class="text-center mt-2"></div>
       </form>
     </div>
   </section>
@@ -1074,151 +1131,187 @@
   </footer>
 
   <!-- ===== SCRIPTS ===== -->
-<script>
-  (function () {
-    // Seletores
-    const nav = document.querySelector('.nav');
-    const navToggle = document.querySelector('.nav-toggle');
-    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    (function () {
+      // Seletores
+      const nav = document.querySelector('.nav');
+      const navToggle = document.querySelector('.nav-toggle');
+      const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
 
-    // Abre/fecha menu mobile (usa .active para casar com o CSS: nav.active { right: 0; })
-    if (navToggle && nav) {
-      navToggle.addEventListener('click', () => {
-        const open = nav.classList.toggle('active'); // aplica/remove .active no <nav>
-        navToggle.classList.toggle('active', open);  // opcional: estado visual no botão
-        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      // Abre/fecha menu mobile (usa .active para casar com o CSS: nav.active { right: 0; })
+      if (navToggle && nav) {
+        navToggle.addEventListener('click', () => {
+          const open = nav.classList.toggle('active'); // aplica/remove .active no <nav>
+          navToggle.classList.toggle('active', open);  // opcional: estado visual no botão
+          navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      }
+
+      // Fecha o menu mobile ao clicar em um link
+      document.querySelectorAll('.menu a').forEach(a => {
+        a.addEventListener('click', () => {
+          nav?.classList.remove('active');
+          navToggle?.classList.remove('active');
+          navToggle?.setAttribute('aria-expanded', 'false');
+
+          // Fecha qualquer dropdown aberto
+          document.querySelectorAll('.dropdown.open').forEach(d => {
+            d.classList.remove('open');
+            d.querySelector('.dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+          });
+        });
       });
-    }
 
-    // Fecha o menu mobile ao clicar em um link
-    document.querySelectorAll('.menu a').forEach(a => {
-      a.addEventListener('click', () => {
+      // Dropdown: abre/fecha submenu ao clicar
+      dropdownToggles.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const li = btn.closest('.dropdown');
+          const isOpen = li.classList.contains('open');
+
+          // Fecha outros dropdowns
+          document.querySelectorAll('.dropdown.open').forEach(d => {
+            if (d !== li) d.classList.remove('open');
+            d.querySelector('.dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+          });
+
+          li.classList.toggle('open', !isOpen);
+          btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+        });
+      });
+
+      // Fecha dropdowns ao clicar fora
+      document.addEventListener('click', (e) => {
+        const insideDropdown = e.target.closest('.dropdown');
+        if (!insideDropdown) {
+          document.querySelectorAll('.dropdown.open').forEach(d => {
+            d.classList.remove('open');
+            d.querySelector('.dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+          });
+        }
+      });
+
+      // Fecha tudo com ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          nav?.classList.remove('active');
+          navToggle?.classList.remove('active');
+          navToggle?.setAttribute('aria-expanded', 'false');
+          document.querySelectorAll('.dropdown.open').forEach(d => {
+            d.classList.remove('open');
+            d.querySelector('.dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+          });
+        }
+      });
+    })(); // <<< IMPORTANTE: chama a IIFE
+  </script>
+  <script>
+    (function () {
+      const nav = document.querySelector('.nav');
+      const navToggle = document.querySelector('.nav-toggle');
+
+      // Fecha o off-canvas + dropdowns
+      function closeAllMenus() {
         nav?.classList.remove('active');
         navToggle?.classList.remove('active');
         navToggle?.setAttribute('aria-expanded', 'false');
 
-        // Fecha qualquer dropdown aberto
-        document.querySelectorAll('.dropdown.open').forEach(d => {
-          d.classList.remove('open');
-          d.querySelector('.dropdown-toggle')?.setAttribute('aria-expanded', 'false');
-        });
-      });
-    });
-
-    // Dropdown: abre/fecha submenu ao clicar
-    dropdownToggles.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const li = btn.closest('.dropdown');
-        const isOpen = li.classList.contains('open');
-
-        // Fecha outros dropdowns
-        document.querySelectorAll('.dropdown.open').forEach(d => {
-          if (d !== li) d.classList.remove('open');
-          d.querySelector('.dropdown-toggle')?.setAttribute('aria-expanded', 'false');
-        });
-
-        li.classList.toggle('open', !isOpen);
-        btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
-      });
-    });
-
-    // Fecha dropdowns ao clicar fora
-    document.addEventListener('click', (e) => {
-      const insideDropdown = e.target.closest('.dropdown');
-      if (!insideDropdown) {
         document.querySelectorAll('.dropdown.open').forEach(d => {
           d.classList.remove('open');
           d.querySelector('.dropdown-toggle')?.setAttribute('aria-expanded', 'false');
         });
       }
-    });
 
-    // Fecha tudo com ESC
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        nav?.classList.remove('active');
-        navToggle?.classList.remove('active');
-        navToggle?.setAttribute('aria-expanded', 'false');
-        document.querySelectorAll('.dropdown.open').forEach(d => {
-          d.classList.remove('open');
-          d.querySelector('.dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+      // 1) Fecha ao clicar em QUALQUER link do menu (topo e submenu)
+      document.querySelectorAll('.menu a').forEach(a => {
+        a.addEventListener('click', () => {
+          closeAllMenus();
         });
-      }
-    });
-  })(); // <<< IMPORTANTE: chama a IIFE
-</script>
-<script>
-  (function () {
-    const nav = document.querySelector('.nav');
-    const navToggle = document.querySelector('.nav-toggle');
-
-    // Fecha o off-canvas + dropdowns
-    function closeAllMenus(){
-      nav?.classList.remove('active');
-      navToggle?.classList.remove('active');
-      navToggle?.setAttribute('aria-expanded', 'false');
-
-      document.querySelectorAll('.dropdown.open').forEach(d => {
-        d.classList.remove('open');
-        d.querySelector('.dropdown-toggle')?.setAttribute('aria-expanded', 'false');
       });
-    }
 
-    // 1) Fecha ao clicar em QUALQUER link do menu (topo e submenu)
-    document.querySelectorAll('.menu a').forEach(a => {
-      a.addEventListener('click', () => {
-        closeAllMenus();
+      // 2) (Opcional) Fecha ao tocar fora do painel (apenas no mobile)
+      document.addEventListener('click', (e) => {
+        const isMobile = window.matchMedia('(max-width: 900px)').matches;
+        if (!isMobile) return;
+
+        const clickedInsideNav = e.target.closest('nav.nav') || e.target.closest('.nav-toggle');
+        if (!clickedInsideNav && nav?.classList.contains('active')) {
+          closeAllMenus();
+        }
       });
-    });
 
-    // 2) (Opcional) Fecha ao tocar fora do painel (apenas no mobile)
-    document.addEventListener('click', (e) => {
-      const isMobile = window.matchMedia('(max-width: 900px)').matches;
-      if (!isMobile) return;
+      // 3) Fecha com ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeAllMenus();
+      });
+    })();
+  </script>
 
-      const clickedInsideNav = e.target.closest('nav.nav') || e.target.closest('.nav-toggle');
-      if (!clickedInsideNav && nav?.classList.contains('active')) {
-        closeAllMenus();
+  <!-- ===== Reveal no Scroll ===== -->
+  <script>
+    (function () {
+      const reveals = document.querySelectorAll('.reveal');
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('active');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+
+        reveals.forEach(el => observer.observe(el));
+      } else {
+        function onScrollReveal() {
+          reveals.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 120) el.classList.add('active');
+          });
+        }
+        window.addEventListener('scroll', onScrollReveal);
+        window.addEventListener('load', onScrollReveal);
+        onScrollReveal();
       }
+    })();
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+      emailjs.init("8wf-Kcn1L1aAH9VhX");
+
+      const form = document.getElementById("orcamento-form");
+      const status = document.getElementById("status");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        status.innerHTML = "Enviando...";
+        status.style.color = "blue";
+
+        const dados = {
+          nome: document.getElementById("nome").value,
+          email: document.getElementById("email").value,
+          telefone: document.getElementById("telefone").value,
+          descricao: document.getElementById("descricao").value
+        };
+
+        emailjs.send("service_t1j7m7n", "template_5mjuir9", dados)
+          .then(() => {
+            status.innerHTML = "Solicitação enviada com sucesso!";
+            status.style.color = "green";
+            form.reset();
+          })
+          .catch((erro) => {
+            console.log("Erro:", erro);
+            status.innerHTML = "Erro ao enviar. Tente novamente.";
+            status.style.color = "red";
+          });
+      });
+
     });
-
-    // 3) Fecha com ESC
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeAllMenus();
-    });
-  })();
-</script>
-
-<!-- ===== Reveal no Scroll ===== -->
-<script>
-  (function(){
-    const reveals = document.querySelectorAll('.reveal');
-
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15 });
-
-      reveals.forEach(el => observer.observe(el));
-    } else {
-      function onScrollReveal(){
-        reveals.forEach(el => {
-          const rect = el.getBoundingClientRect();
-          if (rect.top < window.innerHeight - 120) el.classList.add('active');
-        });
-      }
-      window.addEventListener('scroll', onScrollReveal);
-      window.addEventListener('load', onScrollReveal);
-      onScrollReveal();
-    }
-  })();
-</script>
+  </script>
 
 </body>
 
