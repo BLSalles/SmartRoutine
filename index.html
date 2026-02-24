@@ -1293,7 +1293,7 @@
         const dados = {
           nome: document.getElementById("nome").value,
           email: document.getElementById("email").value,
-          telefone: document.getElementById("telefone").value,
+          telefone:document.getElementById("telefone").value.replace(/\D/g, ''),
           descricao: document.getElementById("descricao").value
         };
 
