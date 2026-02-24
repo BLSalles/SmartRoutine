@@ -1,692 +1,1194 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SmartRoutine | Inteligência que Move Negócios</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartRoutine | Inteligência que Move Negócios</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Inter',sans-serif;
-  scroll-behavior:smooth;
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+    }
 
-body{
-  background:#0f172a;
-  color:#fff;
-}
+    body {
+      background: #0f172a;
+      color: #fff;
+    }
 
-/* ===== HEADER ===== */
+    /* ===== HEADER ===== */
 
-/* ===== MENU RESPONSIVO ===== */
+    /* ===== MENU RESPONSIVO ===== */
 
-.menu-toggle{
-  display:none;
-  flex-direction:column;
-  gap:6px;
-  cursor:pointer;
-}
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+    }
 
-.menu-toggle span{
-  width:28px;
-  height:3px;
-  background:#22d3ee;
-  border-radius:2px;
-  transition:.3s;
-}
+    .menu-toggle span {
+      width: 28px;
+      height: 3px;
+      background: #22d3ee;
+      border-radius: 2px;
+      transition: .3s;
+    }
 
-/* MOBILE */
-@media (max-width: 900px){
+    /* MOBILE */
+    @media (max-width: 900px) {
 
-  nav{
-    position:fixed;
-    top:0;
-    right:-100%;
-    height:100vh;
-    width:260px;
-    background:#0b2540;
-    flex-direction:column;
-    padding-top:120px;
-    padding-left:30px;
-    gap:30px;
-    display:flex;
-    transition:.4s ease;
-    box-shadow:-10px 0 40px rgba(0,0,0,.5);
+      nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 260px;
+        background: #0b2540;
+        flex-direction: column;
+        padding-top: 120px;
+        padding-left: 30px;
+        gap: 30px;
+        display: flex;
+        transition: .4s ease;
+        box-shadow: -10px 0 40px rgba(0, 0, 0, .5);
+      }
+
+      nav a {
+        margin: 0;
+        font-size: 18px;
+      }
+
+      /* quando .active for aplicado via JS, o menu aparece */
+      nav.active {
+        right: 0;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
+    /* Animação do botão */
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translateY(8px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translateY(-8px);
+    }
+
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      background: #0b2540;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 80px;
+      z-index: 1000;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, .4);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .logo img {
+      width: 30px;
+      height: auto;
+    }
+
+    nav a {
+      margin-left: 30px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      transition: .3s;
+      position: relative;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 2px;
+      background: #22d3ee;
+      transition: .3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    section {
+      padding: 140px 80px;
+    }
+
+    /* ===== HERO (ALTERADO para 2 colunas) ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      /* fundo com overlay + imagem */
+      background:
+        linear-gradient(rgba(15, 23, 42, .85), rgba(15, 23, 42, .9)),
+        url('automation-bg.jpg') center/cover no-repeat;
+      padding-top: 140px;
+      /* compensa header fixo */
+      padding-bottom: 80px;
+    }
+
+    .hero-container {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      /* texto | logo grande */
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-left {
+      text-align: left;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+      opacity: .9;
+      max-width: 680px;
+    }
+
+    .btn {
+      padding: 15px 35px;
+      background: #22d3ee;
+      border: none;
+      border-radius: 10px;
+      color: #0f172a;
+      font-weight: 600;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(34, 211, 238, .4);
+    }
+
+    /* Logo grande do hero (ALTERADO) */
+    .hero-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero-logo-big {
+      width: min(520px, 90%);
+      height: auto;
+      filter: drop-shadow(0 18px 40px rgba(0, 0, 0, .35));
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    /* ===== TÍTULOS E CARDS ===== */
+    .section-title {
+      text-align: center;
+      font-size: 42px;
+      margin-bottom: 60px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 40px;
+      border-radius: 15px;
+      text-align: center;
+      transition: .4s;
+      cursor: pointer;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, .5);
+    }
+
+    .card-icon {
+      font-size: 50px;
+      color: #22d3ee;
+      margin-bottom: 20px;
+      transition: .4s;
+    }
+
+    .card:hover .card-icon {
+      transform: scale(1.2);
+    }
+
+    /* ===== SEÇÕES DE SERVIÇO ===== */
+    .service-section {
+      padding: 150px 20px;
+      background: #0b1a2f;
+      text-align: center;
+    }
+
+    .service-container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .service-icon {
+      font-size: 70px;
+      color: #22d3ee;
+      margin-bottom: 30px;
+    }
+
+    .service-section h2 {
+      font-size: 42px;
+      margin-bottom: 20px;
+    }
+
+    .service-sub {
+      font-size: 20px;
+      opacity: .8;
+      margin-bottom: 20px;
+    }
+
+    .service-text {
+      font-size: 18px;
+      line-height: 1.8;
+      opacity: .9;
+    }
+
+    /* ===== ORÇAMENTO ===== */
+    .orcamento-section {
+      padding: 180px 20px;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .orcamento-container {
+      background: #111827;
+      padding: 60px;
+      border-radius: 20px;
+      max-width: 700px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .6);
+      text-align: center;
+    }
+
+    .orcamento-container h2 {
+      font-size: 44px;
+      margin-bottom: 20px;
+    }
+
+    .orcamento-container p {
+      font-size: 18px;
+      opacity: .85;
+      margin-bottom: 40px;
+    }
+
+    .orcamento-icon {
+      font-size: 70px;
+      color: #22d3ee;
+      margin-bottom: 20px;
+    }
+
+    .orcamento-form input,
+    .orcamento-form textarea {
+      width: 100%;
+      padding: 18px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 12px;
+      background: #1e293b;
+      color: #fff;
+      font-size: 16px;
+    }
+
+    .orcamento-form input:focus,
+    .orcamento-form textarea:focus {
+      outline: none;
+      border: 1px solid #22d3ee;
+      box-shadow: 0 0 10px rgba(34, 211, 238, .4);
+    }
+
+    .orcamento-form button {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0b2540;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .social {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: #0f172a;
+      color: #22d3ee;
+      text-decoration: none;
+      transition: .3s;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, .35);
+    }
+
+    .social a:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, .5);
+      color: #0f172a;
+      background: #22d3ee;
+    }
+
+    /* Acessibilidade */
+    .sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
+    /* Submenu do dropdown (aparece quando a <li> tem .open) */
+    .submenu {
+      display: none;
+    }
+
+    .dropdown.open>.submenu {
+      display: block;
+    }
+
+    /* Reveal no Scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity .9s ease, transform .9s ease;
+      will-change: opacity, transform;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVO ===== */
+    @media (max-width: 1100px) {
+      .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-left {
+        text-align: center;
+      }
+
+      .hero p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-right {
+        margin-top: 24px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      header {
+        padding: 16px 24px;
+      }
+
+      section {
+        padding: 120px 24px;
+      }
+
+      .service-section {
+        padding: 120px 16px;
+      }
+
+      .orcamento-container {
+        padding: 36px;
+      }
+    }
+    /* --- Corrige o botão hambúrguer (remove fundo/borda brancos) --- */
+  .nav-toggle{
+    display: none;              /* só aparece no mobile (já controlado pelo @media) */
+    background: transparent;    /* remove fundo branco */
+    border: none;               /* remove borda */
+    color: #ffffff;             /* cor do ícone */
+    padding: 0;                 /* tira padding do botão */
+    line-height: 1;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
   }
 
-  nav a{
-    margin:0;
-    font-size:18px;
+  /* Deixa o ícone um pouco maior e alinhado */
+  .nav-toggle .bi{
+    font-size: 28px;            /* você já usava inline; aqui fica centralizado no CSS */
+    vertical-align: middle;
   }
 
-  nav.active{
-    right:0;
+  /* --- Remove bolinhas da lista e alinha itens no desktop --- */
+  .menu{
+    list-style: none;           /* remove bullets */
+    display: flex;
+    align-items: center;
+    gap: 0;                     /* os espaçamentos já vêm do nav a { margin-left: 30px; } */
+    margin: 0;
+    padding: 0;
   }
-
-  .menu-toggle{
-    display:flex;
-  }
-}
-
-/* Animação do botão */
-.menu-toggle.active span:nth-child(1){
-  transform:rotate(45deg) translateY(8px);
-}
-
-.menu-toggle.active span:nth-child(2){
-  opacity:0;
-}
-
-.menu-toggle.active span:nth-child(3){
-  transform:rotate(-45deg) translateY(-8px);
-}
-
-header{
-  position:fixed;
-  width:100%;
-  top:0;
-  background:#0b2540;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px 80px;
-  z-index:1000;
-  box-shadow:0 5px 20px rgba(0,0,0,.4);
-}
-
-.logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-weight:700;
-  font-size:20px;
-}
-
-.logo img{
-  width:30px;
-  height:auto;
-}
-
-nav a{
-  margin-left:30px;
-  text-decoration:none;
-  color:#fff;
-  font-weight:500;
-  transition:.3s;
-  position:relative;
-}
-
-nav a::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-5px;
-  width:0;
-  height:2px;
-  background:#22d3ee;
-  transition:.3s;
-}
-
-nav a:hover::after{ width:100%; }
-
-section{ padding:140px 80px; }
-
-/* ===== HERO (ALTERADO para 2 colunas) ===== */
-.hero{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  /* fundo com overlay + imagem */
-  background:
-    linear-gradient(rgba(15,23,42,.85),rgba(15,23,42,.9)),
-    url('automation-bg.jpg') center/cover no-repeat;
-  padding-top: 140px; /* compensa header fixo */
-  padding-bottom: 80px;
-}
-
-.hero-container{
-  width:100%;
-  display:grid;
-  grid-template-columns: 1.05fr .95fr; /* texto | logo grande */
-  gap: 40px;
+  /* --- Deixa o botão "Soluções" com cara de link, sem fundo/borda --- */
+.dropdown-toggle{
+  background: transparent;       /* remove fundo branco */
+  border: none;                  /* remove borda padrão */
+  color: #ffffff;                /* mesma cor dos links */
+  font: inherit;                 /* herda a fonte do nav */
+  padding: 0;                    /* tira padding padrão do botão */
+  margin-left: 30px;             /* mesmo espaçamento dos outros links (nav a) */
+  cursor: pointer;
+  display: inline-flex;          /* alinha texto + ícone */
   align-items: center;
+  gap: 6px;                      /* espaço entre texto e caret */
+  line-height: 1;
+  -webkit-appearance: none;      /* remove estilo nativo (Safari/Chrome) */
+  appearance: none;
+  position: relative;            /* para o sublinhado (pseudo-elemento) */
 }
 
-.hero-left{
-  text-align:left;
+/* Sublinhado animado no hover (igual ao nav a::after) */
+.dropdown-toggle::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background: #22d3ee;
+  transition: .3s;
+}
+.dropdown-toggle:hover::after{
+  width: 100%;
 }
 
-.hero h1{
-  font-size: clamp(36px, 5vw, 60px);
-  font-weight:800;
-  line-height:1.1;
-  margin-bottom:20px;
-  text-transform: uppercase;
+/* Estado de foco acessível, mas sem contorno feio */
+.dropdown-toggle:focus{
+  outline: none;
+  box-shadow: none;
 }
 
-.hero p{
-  font-size:20px;
-  margin-bottom:30px;
-  opacity:.9;
-  max-width: 680px;
+/* Deixa o caret alinhado e com opacidade suave */
+.dropdown-toggle .bi{
+  font-size: 14px;
+  opacity: .85;
+}
+/* =========================
+   BASE: links e lista
+   ========================= */
+.menu{
+  list-style: none;            /* remove bolinhas */
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+  padding: 0;
 }
 
-.btn{
-  padding:15px 35px;
-  background:#22d3ee;
-  border:none;
-  border-radius:10px;
-  color:#0f172a;
-  font-weight:600;
-  cursor:pointer;
-  transition:.3s;
+.menu a{
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  position: relative;
 }
 
-.btn:hover{
-  transform:translateY(-3px);
-  box-shadow:0 10px 30px rgba(34,211,238,.4);
+/* sublinhado animado apenas nos links de topo (não no submenu) */
+.menu > .menu-item > a::after,
+.dropdown-toggle::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background: #22d3ee;
+  transition: width .25s ease;
+}
+.menu > .menu-item > a:hover::after,
+.dropdown-toggle:hover::after{
+  width: 100%;
 }
 
-/* Logo grande do hero (ALTERADO) */
-.hero-right{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
+/* =========================
+   "Soluções" como link, não botão feio
+   ========================= */
+.dropdown-toggle{
+  background: transparent;
+  border: none;
+  color: #fff;
+  font: inherit;
+  padding: 0;
+  margin-left: 30px;           /* igual ao nav a */
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  line-height: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+}
+.dropdown-toggle:focus{
+  outline: none;
+  box-shadow: none;
+}
+.dropdown-toggle .bi{
+  font-size: 12px;
+  opacity: .85;
+  transition: transform .2s ease, opacity .2s ease;
 }
 
-.hero-logo-big{
-  width: min(520px, 90%);
-  height:auto;
-  filter: drop-shadow(0 18px 40px rgba(0,0,0,.35));
-  user-select:none;
-  -webkit-user-drag:none;
+/* caret gira quando aberto */
+.dropdown.open .dropdown-toggle .bi{
+  transform: rotate(180deg);
+  opacity: 1;
 }
 
-/* ===== TÍTULOS E CARDS ===== */
-.section-title{
-  text-align:center;
-  font-size:42px;
-  margin-bottom:60px;
-}
-
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:30px;
-}
-
-.card{
-  background:#1e293b;
-  padding:40px;
-  border-radius:15px;
-  text-align:center;
-  transition:.4s;
-  cursor:pointer;
-  min-height:260px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-}
-
-.card:hover{
-  transform:translateY(-10px);
-  box-shadow:0 15px 40px rgba(0,0,0,.5);
-}
-
-.card-icon{
-  font-size:50px;
-  color:#22d3ee;
-  margin-bottom:20px;
-  transition:.4s;
-}
-
-.card:hover .card-icon{ transform:scale(1.2); }
-
-/* ===== SEÇÕES DE SERVIÇO ===== */
-.service-section{
-  padding:150px 20px;
-  background:#0b1a2f;
-  text-align:center;
-}
-
-.service-container{
-  max-width:900px;
-  margin:auto;
-}
-
-.service-icon{
-  font-size:70px;
-  color:#22d3ee;
-  margin-bottom:30px;
-}
-
-.service-section h2{
-  font-size:42px;
-  margin-bottom:20px;
-}
-
-.service-sub{
-  font-size:20px;
-  opacity:.8;
-  margin-bottom:20px;
-}
-
-.service-text{
-  font-size:18px;
-  line-height:1.8;
-  opacity:.9;
-}
-
-/* ===== ORÇAMENTO ===== */
-.orcamento-section{
-  padding:180px 20px;
-  background:linear-gradient(135deg,#0f172a,#1e293b);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-
-.orcamento-container{
-  background:#111827;
-  padding:60px;
-  border-radius:20px;
-  max-width:700px;
-  width:100%;
-  box-shadow:0 20px 60px rgba(0,0,0,.6);
-  text-align:center;
-}
-
-.orcamento-container h2{
-  font-size:44px;
-  margin-bottom:20px;
-}
-
-.orcamento-container p{
-  font-size:18px;
-  opacity:.85;
-  margin-bottom:40px;
-}
-
-.orcamento-icon{
-  font-size:70px;
-  color:#22d3ee;
-  margin-bottom:20px;
-}
-
-.orcamento-form input,
-.orcamento-form textarea{
-  width:100%;
-  padding:18px;
-  margin-bottom:20px;
-  border:none;
-  border-radius:12px;
-  background:#1e293b;
-  color:#fff;
-  font-size:16px;
-}
-
-.orcamento-form input:focus,
-.orcamento-form textarea:focus{
-  outline:none;
-  border:1px solid #22d3ee;
-  box-shadow:0 0 10px rgba(34,211,238,.4);
-}
-
-.orcamento-form button{ width:100%; margin-top:10px; }
-
-/* ===== FOOTER ===== */
-footer{
-  background:#0b2540;
-  padding:40px;
-  text-align:center;
-}
-
-.social{
-  display:flex;
-  justify-content:center;
-  gap:18px;
-  align-items:center;
-}
-
-.social a{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  width:42px;
-  height:42px;
-  border-radius:10px;
-  background:#0f172a;
-  color:#22d3ee;
-  text-decoration:none;
-  transition:.3s;
-  box-shadow:0 8px 22px rgba(0,0,0,.35);
-}
-
-.social a:hover{
-  transform:translateY(-4px);
-  box-shadow:0 12px 30px rgba(0,0,0,.5);
-  color:#0f172a;
-  background:#22d3ee;
-}
-
-/* Acessibilidade */
-.sr-only{
-  position:absolute !important;
-  width:1px !important;
-  height:1px !important;
-  padding:0 !important;
-  margin:-1px !important;
-  overflow:hidden !important;
-  clip:rect(0,0,0,0) !important;
-  white-space:nowrap !important;
-  border:0 !important;
-}
-
-/* Reveal no Scroll */
-.reveal{
-  opacity:0;
-  transform:translateY(40px);
-  transition:opacity .9s ease, transform .9s ease;
-  will-change:opacity, transform;
-}
-.reveal.active{ opacity:1; transform:translateY(0); }
-
-/* ===== RESPONSIVO ===== */
-@media (max-width: 1100px){
-  .hero-container{
-    grid-template-columns: 1fr;
-    text-align:center;
+/* =========================
+   SUBMENU: visual desktop (flutuante)
+   ========================= */
+@media (min-width: 901px){
+  .menu-item.dropdown{
+    position: relative;
   }
-  .hero-left{ text-align:center; }
-  .hero p{ margin-left:auto; margin-right:auto; }
-  .hero-right{ margin-top: 24px; }
+
+  /* painel do submenu */
+  .submenu{
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 30px;                   /* alinha com o texto “Soluções” que tem margin-left:30px */
+    min-width: 260px;
+    background: #0b2540;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 0 18px 40px rgba(0,0,0,.35);
+    display: none;                /* escondido por padrão */
+    transform: translateY(8px);
+    opacity: 0;
+    transition: transform .18s ease, opacity .18s ease;
+    z-index: 1001;
+  }
+
+  /* quando aberto via JS (li.dropdown.open) */
+  .dropdown.open > .submenu{
+    display: block;
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* itens do submenu */
+  .submenu li{
+    list-style: none;
+  }
+  .submenu li + li{
+    margin-top: 6px;
+  }
+  .submenu a{
+    display: block;
+    color: #e6f4ff;
+    padding: 10px 12px;
+    border-radius: 8px;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+  /* sem sublinhado animado no submenu */
+  .submenu a::after{ display: none; }
+
+  .submenu a:hover{
+    background: rgba(34,211,238,.12);
+    color: #22d3ee;
+  }
 }
+
+/* =========================
+   MOBILE: off-canvas já é o seu padrão
+   – só cuidar da disposição
+   ========================= */
 @media (max-width: 900px){
-  header{ padding:16px 24px; }
-  section{ padding:120px 24px; }
-  .service-section{ padding:120px 16px; }
-  .orcamento-container{ padding:36px; }
+  .nav-toggle{ display: inline-flex; }
+
+  .menu{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+  }
+
+  .dropdown-toggle{
+    margin-left: 0;             /* sem deslocar no mobile */
+    font-size: 18px;
+  }
+
+  /* submenu em coluna, sem painel flutuante no mobile */
+  .submenu{
+    position: static;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    padding: 6px 0 0 8px;
+    transform: none;
+    opacity: 1;
+  }
+  .submenu a{
+    padding: 8px 0;
+    border-radius: 6px;
+  }
 }
-</style>
+/* ===== MOBILE: aparência do painel lateral ===== */
+@media (max-width: 900px){
+
+  /* Painel: um pouco mais “card”, com respiro à direita */
+  nav{
+    padding-right: 20px;
+  }
+
+  /* Títulos/seções do menu */
+  .menu{
+    list-style: none;       /* sem bolinhas */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  /* “Soluções” como heading/link */
+  .dropdown-toggle{
+    margin-left: 0;
+    font-size: 18px;
+    font-weight: 700;       /* dá “peso” de título */
+    color: #fff;
+    background: transparent;
+    border: 0;
+    padding: 2px 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* caret */
+  .dropdown-toggle .bi{
+    font-size: 12px;
+    opacity: .9;
+    transition: transform .2s ease;
+  }
+  .dropdown.open .dropdown-toggle .bi{
+    transform: rotate(180deg);
+  }
+
+  /* Submenu organizado e sem bullets */
+  .submenu{
+    list-style: none;         /* remove bolinhas do UL */
+    padding-left: 12px;       /* leve indentação */
+    margin-top: 6px;
+  }
+  .submenu li{
+    list-style: none;         /* remove qualquer bullet residual */
+  }
+  .submenu a{
+    display: block;
+    color: #e6f4ff;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 0;          /* área de toque confortável */
+    border-radius: 8px;
+  }
+  .submenu a:hover{
+    background: rgba(34,211,238,.12);
+    color: #22d3ee;
+  }
+
+  /* Links de nível superior (Sobre Nós, Cases, Contato) */
+  .menu > .menu-item > a{
+    display: block;
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 0;
+    border-radius: 8px;
+  }
+  .menu > .menu-item > a:hover{
+    background: rgba(255,255,255,.06);
+  }
+
+  /* Separador sutil entre o bloco “Soluções” e os demais */
+  .menu > .menu-item.dropdown{
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    margin-bottom: 6px;
+  }
+
+  /* Remove sublinhado animado no mobile (fica “limpo”) */
+  .dropdown-toggle::after,
+  .menu > .menu-item > a::after{
+    display: none !important;
+  }
+}
+/* Mobile: sem margem lateral (os links empilham), mantém visual limpo */
+@media (max-width: 900px){
+  .dropdown-toggle{
+    margin-left: 0;
+    font-size: 18px;
+  }
+}
+
+
+  /* --- Mobile: mostra o botão e empilha os links --- */
+  @media (max-width: 900px){
+    .nav-toggle{ display: inline-flex; }  /* mostra o botão hambúrguer */
+    .menu{
+      flex-direction: column;   /* os links um abaixo do outro no off-canvas */
+      align-items: flex-start;
+      gap: 28px;
+    }
+  }
+  </style>
 </head>
-<script>
-  const toggle = document.getElementById("menu-toggle");
-  const nav = document.getElementById("nav-menu");
-
-  toggle.addEventListener("click", () => {
-    toggle.classList.toggle("active");
-    nav.classList.toggle("active");
-  });
-
-  // Fecha menu ao clicar em link
-  document.querySelectorAll("#nav-menu a").forEach(link => {
-    link.addEventListener("click", () => {
-      toggle.classList.remove("active");
-      nav.classList.remove("active");
-    });
-  });
-</script>
 
 <body>
 
-<header>
-  <div class="logo">
-    <img src="logo-icon.png" alt="Logo SmartRoutine">
-    SmartRoutine
-  </div>
-
-  <nav id="nav-menu">
-    <a href="#solucoes">Soluções</a>
-    <a href="#sobre">Sobre Nós</a>
-    <a href="#cases">Cases</a>
-    <a href="#contato">Contato</a>
-  </nav>
-
-  <!-- Botão hamburguer -->
-  <div class="menu-toggle" id="menu-toggle">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-</header>
-
-<!-- ===== HERO (ALTERADO: 2 colunas com logo grande) ===== -->
-<section class="hero">
-  <div class="hero-container">
-    <div class="hero-left reveal">
-      <h1>INTELIGÊNCIA QUE MOVE NEGÓCIOS</h1>
-      <p>Automação, dados e estratégia para empresas que querem escalar.</p>
-      <a href="#contato"><button class="btn">Solicitar Orçamento</button></a>
+  <header>
+    <div class="logo">
+      <img src="logo-icon.png" alt="SmartRoutine">
+      SmartRoutine
     </div>
-    
-    <div class="hero-right reveal">
-      <!-- ✅ Logo grande do lado direito -->
-      <img src="logo-icon-larger.png" alt="Marca SmartRoutine" class="hero-logo-big">
-    </div>
-  </div>
-</section>
 
+    <!-- Botão hambúrguer (aparece no mobile) -->
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <i class="bi bi-list" style="font-size:28px;"></i>
+    </button>
 
-<section id="solucoes">
-  <h2 class="section-title reveal">Nossas Soluções</h2>
-  <div class="cards">
-    <a href="#automacao" style="text-decoration:none;color:white;">
-      <div class="card reveal">
-        <i class="bi bi-cpu card-icon"></i>
-        <h3>Automação de Processos</h3>
-        <p>Automatize tarefas repetitivas.</p>
-      </div>
-    </a>
+    <nav class="nav" aria-label="Menu principal">
+      <ul class="menu">
+        <!-- Dropdown Soluções -->
+        <li class="menu-item dropdown">
+          <button class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+            Soluções <i class="bi bi-caret-down-fill" aria-hidden="true"></i>
+          </button>
+          <ul class="submenu" role="menu">
+            <li role="none"><a role="menuitem" href="#automacao">Automação de Processos</a></li>
+            <li role="none"><a role="menuitem" href="#bi">Business Intelligence</a></li>
+            <li role="none"><a role="menuitem" href="#integracao">Integração de Dados</a></li>
+            <li role="none"><a role="menuitem" href="#consultoria">Consultoria Estratégica</a></li>
+          </ul>
+        </li>
 
-    <a href="#bi" style="text-decoration:none;color:white;">
-      <div class="card reveal">
-        <i class="bi bi-graph-up-arrow card-icon"></i>
-        <h3>Business Intelligence</h3>
-        <p>Dashboards estratégicos.</p>
-      </div>
-    </a>
+        <li class="menu-item"><a href="#sobre">Sobre Nós</a></li>
+        <li class="menu-item"><a href="#cases">Cases</a></li>
+        <li class="menu-item"><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <a href="#integracao" style="text-decoration:none;color:white;">
-      <div class="card reveal">
-        <i class="bi bi-database-gear card-icon"></i>
-        <h3>Integração de Dados</h3>
-        <p>Centralização de sistemas.</p>
-      </div>
-    </a>
-
-    <a href="#consultoria" style="text-decoration:none;color:white;">
-      <div class="card reveal">
-        <i class="bi bi-shield-check card-icon"></i>
-        <h3>Consultoria Estratégica</h3>
-        <p>Transformação digital.</p>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- ===== SERVIÇOS DETALHADOS ===== -->
-<section id="automacao" class="service-section">
-  <div class="service-container reveal">
-    <i class="bi bi-cpu service-icon"></i>
-    <h2>Automação de Processos</h2>
-    <p class="service-sub">Elimine tarefas manuais e reduza custos operacionais.</p>
-    <p class="service-text">
-      Implementamos soluções completas de automação utilizando RPA, scripts inteligentes e integrações personalizadas.
-      Mapeamos processos internos, identificamos gargalos e criamos fluxos otimizados.
-      Reduzimos falhas humanas e retrabalho operacional.
-      Aumentamos produtividade e eficiência.
-      Geramos economia real em custos fixos.
-      Automatizamos rotinas financeiras, administrativas e comerciais.
-      Melhoramos controle e rastreabilidade de processos.
-      Criamos soluções escaláveis e seguras.
-      Integramos sistemas internos e externos.
-      Tudo focado em resultado prático e crescimento sustentável.
-    </p>
-  </div>
-</section>
-
-<section id="bi" class="service-section">
-  <div class="service-container reveal">
-    <i class="bi bi-graph-up-arrow service-icon"></i>
-    <h2>Business Intelligence</h2>
-    <p class="service-sub">Decisões estratégicas baseadas em dados.</p>
-    <p class="service-text">
-      Criamos dashboards personalizados com KPIs estratégicos.
-      Centralizamos dados de múltiplas fontes.
-      Transformamos informações complexas em visualizações claras.
-      Ajudamos gestores a tomarem decisões baseadas em dados reais.
-      Identificamos oportunidades de crescimento.
-      Mapeamos gargalos financeiros e operacionais.
-      Aumentamos previsibilidade de receita.
-      Reduzimos riscos estratégicos.
-      Melhoramos controle gerencial.
-      Geramos inteligência para escalar negócios.
-    </p>
-  </div>
-</section>
-
-<section id="integracao" class="service-section">
-  <div class="service-container reveal">
-    <i class="bi bi-database-gear service-icon"></i>
-    <h2>Integração de Dados</h2>
-    <p class="service-sub">Sistemas conectados, dados unificados.</p>
-    <p class="service-text">
-      Integramos ERP, CRM e plataformas internas.
-      Eliminamos silos de informação.
-      Garantimos consistência nos dados.
-      Reduzimos retrabalho.
-      Automatizamos troca de informações.
-      Criamos APIs personalizadas.
-      Melhoramos fluxo operacional.
-      Aumentamos velocidade de resposta.
-      Centralizamos dados estratégicos.
-      Preparamos sua empresa para crescimento escalável.
-    </p>
-  </div>
-</section>
-
-<section id="consultoria" class="service-section">
-  <div class="service-container reveal">
-    <i class="bi bi-shield-check service-icon"></i>
-    <h2>Consultoria Estratégica</h2>
-    <p class="service-sub">Estratégia digital para escalar negócios.</p>
-    <p class="service-text">
-      Realizamos diagnóstico completo do seu negócio.
-      Analisamos processos e tecnologia atual.
-      Criamos roadmap estratégico personalizado.
-      Definimos prioridades e investimentos.
-      Identificamos oportunidades digitais.
-      Estruturamos arquitetura tecnológica.
-      Auxiliamos na transformação digital.
-      Planejamos crescimento sustentável.
-      Reduzimos riscos estratégicos.
-      Posicionamos sua empresa à frente da concorrência.
-    </p>
-  </div>
-</section>
-
-<!-- ===== SOBRE NÓS ===== -->
-<section id="sobre" class="service-section">
-  <div class="service-container reveal">
-    <i class="bi bi-people-fill service-icon"></i>
-    <h2>Sobre Nós</h2>
-    <p class="service-sub">Transformamos tecnologia em resultados reais.</p>
-    <p class="service-text">
-      A SmartRoutine nasceu da necessidade crescente que empresas enfrentam ao tentar escalar
-      sem se perderem em processos manuais, retrabalho e falta de dados confiáveis.
-      Criada por especialistas apaixonados por automação, inteligência de dados e estratégia,
-      nossa missão é simples: tornar seu negócio mais eficiente, moderno e preparado para o futuro.
-      <br><br>
-      Começamos atendendo pequenas empresas que buscavam organização digital e, rapidamente,
-      nos tornamos parceiros estratégicos de indústrias, grupos empresariais e operações em expansão.
-      Hoje, entregamos soluções completas que unem automação, integração, dashboards inteligentes
-      e visão estratégica — tudo com foco em crescimento sustentável.
-      <br><br>
-      Não vendemos apenas tecnologia. Vendemos evolução.
-    </p>
-  </div>
-</section>
-
-<!-- ===== CASES ===== -->
-<section id="cases" class="service-section">
-  <div class="service-container">
-    <i class="bi bi-trophy service-icon"></i>
-    <h2 class="reveal">Cases de Sucesso</h2>
-    <p class="service-sub reveal">Resultados reais impulsionados por automação, dados e estratégia.</p>
-
-    <div class="cards" style="margin-top:50px;">
-      <div class="card reveal">
-        <i class="bi bi-building-fill-check card-icon"></i>
-        <h3>Case 01 — Indústria Orion</h3>
-        <p>
-          Automatizamos processos críticos da área financeira e criamos integrações entre ERP e CRM.
-          <br><strong>Impacto:</strong> redução de 68% no tempo operacional e aumento de previsibilidade.
-        </p>
+  <!-- ===== HERO (ALTERADO: 2 colunas com logo grande) ===== -->
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-left reveal">
+        <h1>INTELIGÊNCIA QUE MOVE NEGÓCIOS</h1>
+        <p>Automação, dados e estratégia para empresas que querem escalar.</p>
+        <a href="#contato"><button class="btn">Solicitar Orçamento</button></a>
       </div>
 
-      <div class="card reveal">
-        <i class="bi bi-bar-chart-line-fill card-icon"></i>
-        <h3>Case 02 — Grupo Nova Vitta</h3>
-        <p>
-          Implementação de um ecossistema completo de Business Intelligence, com KPIs unificados e
-          acesso em tempo real ao faturamento, perdas e forecast.
-          <br><strong>Impacto:</strong> decisões mais rápidas e visão executiva integrada.
-        </p>
-      </div>
-
-      <div class="card reveal">
-        <i class="bi bi-gear-wide-connected card-icon"></i>
-        <h3>Case 03 — TechCore Solutions</h3>
-        <p>
-          Integração total entre ferramentas internas por meio de APIs customizadas e padronização de dados.
-          <br><strong>Impacto:</strong> eliminação de retrabalho, redução de erros e escalabilidade garantida.
-        </p>
+      <div class="hero-right reveal">
+        <!-- ✅ Logo grande do lado direito -->
+        <img src="logo-icon-larger.png" alt="Marca SmartRoutine" class="hero-logo-big">
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ===== ORÇAMENTO ===== -->
-<section id="contato" class="orcamento-section">
-  <div class="orcamento-container reveal">
-    <i class="bi bi-send-check orcamento-icon"></i>
-    <h2>Solicitar Orçamento</h2>
-    <p>Entre em contato e descubra como podemos transformar sua empresa com automação, dados e estratégia.</p>
 
-    <form class="orcamento-form">
-      <input type="text" name="nome" placeholder="Nome Completo" required>
-      <input type="email" name="email" placeholder="Email Corporativo" required>
-      <input type="text" name="telefone" placeholder="Telefone / WhatsApp" required>
-      <textarea rows="5" name="descricao" placeholder="Descreva seu projeto"></textarea>
-      <button type="submit" class="btn">Enviar Solicitação</button>
-    </form>
-  </div>
-</section>
+  <section id="solucoes">
+    <h2 class="section-title reveal">Nossas Soluções</h2>
+    <div class="cards">
+      <a href="#automacao" style="text-decoration:none;color:white;">
+        <div class="card reveal">
+          <i class="bi bi-cpu card-icon"></i>
+          <h3>Automação de Processos</h3>
+          <p>Automatize tarefas repetitivas.</p>
+        </div>
+      </a>
 
-<footer>
-  <div class="social">
-    <a href="https://www.linkedin.com/in/bruno-salles-b752b4187/" target="_blank" rel="noopener" aria-label="LinkedIn">
-      <i class="bi bi-linkedin" style="font-size:22px;" aria-hidden="true"></i>
-      <span class="sr-only">LinkedIn</span>
-    </a>
-    <a href="https://wa.me/5511956996426" target="_blank" rel="noopener" aria-label="WhatsApp">
-      <i class="bi bi-whatsapp" style="font-size:22px;" aria-hidden="true"></i>
-      <span class="sr-only">WhatsApp</span>
-    </a>
-    <a href="https://www.instagram.com/smartroutine_oficial" target="_blank" rel="noopener" aria-label="Instagram">
-      <i class="bi bi-instagram" style="font-size:22px;" aria-hidden="true"></i>
-      <span class="sr-only">Instagram</span>
-    </a>
-  </div>
-  <p style="margin-top:20px;">© 2025 SmartRoutine. Todos os direitos reservados.</p>
-</footer>
+      <a href="#bi" style="text-decoration:none;color:white;">
+        <div class="card reveal">
+          <i class="bi bi-graph-up-arrow card-icon"></i>
+          <h3>Business Intelligence</h3>
+          <p>Dashboards estratégicos.</p>
+        </div>
+      </a>
+
+      <a href="#integracao" style="text-decoration:none;color:white;">
+        <div class="card reveal">
+          <i class="bi bi-database-gear card-icon"></i>
+          <h3>Integração de Dados</h3>
+          <p>Centralização de sistemas.</p>
+        </div>
+      </a>
+
+      <a href="#consultoria" style="text-decoration:none;color:white;">
+        <div class="card reveal">
+          <i class="bi bi-shield-check card-icon"></i>
+          <h3>Consultoria Estratégica</h3>
+          <p>Transformação digital.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== SERVIÇOS DETALHADOS ===== -->
+  <section id="automacao" class="service-section">
+    <div class="service-container reveal">
+      <i class="bi bi-cpu service-icon"></i>
+      <h2>Automação de Processos</h2>
+      <p class="service-sub">Elimine tarefas manuais e reduza custos operacionais.</p>
+      <p class="service-text">
+        Implementamos soluções completas de automação utilizando RPA, scripts inteligentes e integrações personalizadas.
+        Mapeamos processos internos, identificamos gargalos e criamos fluxos otimizados.
+        Reduzimos falhas humanas e retrabalho operacional.
+        Aumentamos produtividade e eficiência.
+        Geramos economia real em custos fixos.
+        Automatizamos rotinas financeiras, administrativas e comerciais.
+        Melhoramos controle e rastreabilidade de processos.
+        Criamos soluções escaláveis e seguras.
+        Integramos sistemas internos e externos.
+        Tudo focado em resultado prático e crescimento sustentável.
+      </p>
+    </div>
+  </section>
+
+  <section id="bi" class="service-section">
+    <div class="service-container reveal">
+      <i class="bi bi-graph-up-arrow service-icon"></i>
+      <h2>Business Intelligence</h2>
+      <p class="service-sub">Decisões estratégicas baseadas em dados.</p>
+      <p class="service-text">
+        Criamos dashboards personalizados com KPIs estratégicos.
+        Centralizamos dados de múltiplas fontes.
+        Transformamos informações complexas em visualizações claras.
+        Ajudamos gestores a tomarem decisões baseadas em dados reais.
+        Identificamos oportunidades de crescimento.
+        Mapeamos gargalos financeiros e operacionais.
+        Aumentamos previsibilidade de receita.
+        Reduzimos riscos estratégicos.
+        Melhoramos controle gerencial.
+        Geramos inteligência para escalar negócios.
+      </p>
+    </div>
+  </section>
+
+  <section id="integracao" class="service-section">
+    <div class="service-container reveal">
+      <i class="bi bi-database-gear service-icon"></i>
+      <h2>Integração de Dados</h2>
+      <p class="service-sub">Sistemas conectados, dados unificados.</p>
+      <p class="service-text">
+        Integramos ERP, CRM e plataformas internas.
+        Eliminamos silos de informação.
+        Garantimos consistência nos dados.
+        Reduzimos retrabalho.
+        Automatizamos troca de informações.
+        Criamos APIs personalizadas.
+        Melhoramos fluxo operacional.
+        Aumentamos velocidade de resposta.
+        Centralizamos dados estratégicos.
+        Preparamos sua empresa para crescimento escalável.
+      </p>
+    </div>
+  </section>
+
+  <section id="consultoria" class="service-section">
+    <div class="service-container reveal">
+      <i class="bi bi-shield-check service-icon"></i>
+      <h2>Consultoria Estratégica</h2>
+      <p class="service-sub">Estratégia digital para escalar negócios.</p>
+      <p class="service-text">
+        Realizamos diagnóstico completo do seu negócio.
+        Analisamos processos e tecnologia atual.
+        Criamos roadmap estratégico personalizado.
+        Definimos prioridades e investimentos.
+        Identificamos oportunidades digitais.
+        Estruturamos arquitetura tecnológica.
+        Auxiliamos na transformação digital.
+        Planejamos crescimento sustentável.
+        Reduzimos riscos estratégicos.
+        Posicionamos sua empresa à frente da concorrência.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== SOBRE NÓS ===== -->
+  <section id="sobre" class="service-section">
+    <div class="service-container reveal">
+      <i class="bi bi-people-fill service-icon"></i>
+      <h2>Sobre Nós</h2>
+      <p class="service-sub">Transformamos tecnologia em resultados reais.</p>
+      <p class="service-text">
+        A SmartRoutine nasceu da necessidade crescente que empresas enfrentam ao tentar escalar
+        sem se perderem em processos manuais, retrabalho e falta de dados confiáveis.
+        Criada por especialistas apaixonados por automação, inteligência de dados e estratégia,
+        nossa missão é simples: tornar seu negócio mais eficiente, moderno e preparado para o futuro.
+        <br><br>
+        Começamos atendendo pequenas empresas que buscavam organização digital e, rapidamente,
+        nos tornamos parceiros estratégicos de indústrias, grupos empresariais e operações em expansão.
+        Hoje, entregamos soluções completas que unem automação, integração, dashboards inteligentes
+        e visão estratégica — tudo com foco em crescimento sustentável.
+        <br><br>
+        Não vendemos apenas tecnologia. Vendemos evolução.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== CASES ===== -->
+  <section id="cases" class="service-section">
+    <div class="service-container">
+      <i class="bi bi-trophy service-icon"></i>
+      <h2 class="reveal">Cases de Sucesso</h2>
+      <p class="service-sub reveal">Resultados reais impulsionados por automação, dados e estratégia.</p>
+
+      <div class="cards" style="margin-top:50px;">
+        <div class="card reveal">
+          <i class="bi bi-building-fill-check card-icon"></i>
+          <h3>Case 01 — Indústria Orion</h3>
+          <p>
+            Automatizamos processos críticos da área financeira e criamos integrações entre ERP e CRM.
+            <br><strong>Impacto:</strong> redução de 68% no tempo operacional e aumento de previsibilidade.
+          </p>
+        </div>
+
+        <div class="card reveal">
+          <i class="bi bi-bar-chart-line-fill card-icon"></i>
+          <h3>Case 02 — Grupo Nova Vitta</h3>
+          <p>
+            Implementação de um ecossistema completo de Business Intelligence, com KPIs unificados e
+            acesso em tempo real ao faturamento, perdas e forecast.
+            <br><strong>Impacto:</strong> decisões mais rápidas e visão executiva integrada.
+          </p>
+        </div>
+
+        <div class="card reveal">
+          <i class="bi bi-gear-wide-connected card-icon"></i>
+          <h3>Case 03 — TechCore Solutions</h3>
+          <p>
+            Integração total entre ferramentas internas por meio de APIs customizadas e padronização de dados.
+            <br><strong>Impacto:</strong> eliminação de retrabalho, redução de erros e escalabilidade garantida.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ORÇAMENTO ===== -->
+  <section id="contato" class="orcamento-section">
+    <div class="orcamento-container reveal">
+      <i class="bi bi-send-check orcamento-icon"></i>
+      <h2>Solicitar Orçamento</h2>
+      <p>Entre em contato e descubra como podemos transformar sua empresa com automação, dados e estratégia.</p>
+
+      <form class="orcamento-form">
+        <input type="text" name="nome" placeholder="Nome Completo" required>
+        <input type="email" name="email" placeholder="Email Corporativo" required>
+        <input type="text" name="telefone" placeholder="Telefone / WhatsApp" required>
+        <textarea rows="5" name="descricao" placeholder="Descreva seu projeto"></textarea>
+        <button type="submit" class="btn">Enviar Solicitação</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="social">
+      <a href="https://www.linkedin.com/in/bruno-salles-b752b4187/" target="_blank" rel="noopener"
+        aria-label="LinkedIn">
+        <i class="bi bi-linkedin" style="font-size:22px;" aria-hidden="true"></i>
+        <span class="sr-only">LinkedIn</span>
+      </a>
+      <a href="https://wa.me/5511956996426" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <i class="bi bi-whatsapp" style="font-size:22px;" aria-hidden="true"></i>
+        <span class="sr-only">WhatsApp</span>
+      </a>
+      <a href="https://www.instagram.com/smartroutine_oficial" target="_blank" rel="noopener" aria-label="Instagram">
+        <i class="bi bi-instagram" style="font-size:22px;" aria-hidden="true"></i>
+        <span class="sr-only">Instagram</span>
+      </a>
+    </div>
+    <p style="margin-top:20px;">© 2025 SmartRoutine. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+<script>
+  (function () {
+    // Seletores
+    const nav = document.querySelector('.nav');
+    const navToggle = document.querySelector('.nav-toggle');
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+    // Abre/fecha menu mobile (usa .active para casar com o CSS: nav.active { right: 0; })
+    if (navToggle && nav) {
+      navToggle.addEventListener('click', () => {
+        const open = nav.classList.toggle('active'); // aplica/remove .active no <nav>
+        navToggle.classList.toggle('active', open);  // opcional: estado visual no botão
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+
+    // Fecha o menu mobile ao clicar em um link
+    document.querySelectorAll('.menu a').forEach(a => {
+      a.addEventListener('click', () => {
+        nav?.classList.remove('active');
+        navToggle?.classList.remove('active');
+        navToggle?.setAttribute('aria-expanded', 'false');
+
+        // Fecha qualquer dropdown aberto
+        document.querySelectorAll('.dropdown.open').forEach(d => {
+          d.classList.remove('open');
+          d.querySelector('.dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+        });
+      });
+    });
+
+    // Dropdown: abre/fecha submenu ao clicar
+    dropdownToggles.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const li = btn.closest('.dropdown');
+        const isOpen = li.classList.contains('open');
+
+        // Fecha outros dropdowns
+        document.querySelectorAll('.dropdown.open').forEach(d => {
+          if (d !== li) d.classList.remove('open');
+          d.querySelector('.dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+        });
+
+        li.classList.toggle('open', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+      });
+    });
+
+    // Fecha dropdowns ao clicar fora
+    document.addEventListener('click', (e) => {
+      const insideDropdown = e.target.closest('.dropdown');
+      if (!insideDropdown) {
+        document.querySelectorAll('.dropdown.open').forEach(d => {
+          d.classList.remove('open');
+          d.querySelector('.dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+        });
+      }
+    });
+
+    // Fecha tudo com ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        nav?.classList.remove('active');
+        navToggle?.classList.remove('active');
+        navToggle?.setAttribute('aria-expanded', 'false');
+        document.querySelectorAll('.dropdown.open').forEach(d => {
+          d.classList.remove('open');
+          d.querySelector('.dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+        });
+      }
+    });
+  })(); // <<< IMPORTANTE: chama a IIFE
+</script>
+<script>
+  (function () {
+    const nav = document.querySelector('.nav');
+    const navToggle = document.querySelector('.nav-toggle');
+
+    // Fecha o off-canvas + dropdowns
+    function closeAllMenus(){
+      nav?.classList.remove('active');
+      navToggle?.classList.remove('active');
+      navToggle?.setAttribute('aria-expanded', 'false');
+
+      document.querySelectorAll('.dropdown.open').forEach(d => {
+        d.classList.remove('open');
+        d.querySelector('.dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    // 1) Fecha ao clicar em QUALQUER link do menu (topo e submenu)
+    document.querySelectorAll('.menu a').forEach(a => {
+      a.addEventListener('click', () => {
+        closeAllMenus();
+      });
+    });
+
+    // 2) (Opcional) Fecha ao tocar fora do painel (apenas no mobile)
+    document.addEventListener('click', (e) => {
+      const isMobile = window.matchMedia('(max-width: 900px)').matches;
+      if (!isMobile) return;
+
+      const clickedInsideNav = e.target.closest('nav.nav') || e.target.closest('.nav-toggle');
+      if (!clickedInsideNav && nav?.classList.contains('active')) {
+        closeAllMenus();
+      }
+    });
+
+    // 3) Fecha com ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeAllMenus();
+    });
+  })();
+</script>
 
 <!-- ===== Reveal no Scroll ===== -->
 <script>
@@ -719,4 +1221,5 @@ footer{
 </script>
 
 </body>
+
 </html>
